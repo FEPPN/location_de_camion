@@ -1,1 +1,259 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aides au déménagement</title>
+<style>
+.ppn-aidem{/* Papernest Primary */--p50:#F6F5FF;--p100:#F1F0FF;--p200:#CECCFF;--p300:#ACA8FF;--p400:#8A85FF;--p500:#5A52FF;--p600:#443EC1;--p700:#3E38B2;--p800:#2D297F;--p900:#1B194D;--p950:#121032;
+  --d:var(--p900);--g:#6B6A80;--b:#E3E3E8;--w:#fff;
+  font-family:Avenir,"Avenir Next","Nunito Sans",system-ui,sans-serif;color:var(--d);max-width:720px;margin:0 auto}
+.ppn-aidem *,.ppn-aidem *::before,.ppn-aidem *::after{box-sizing:border-box}
+.ppn-aidem__title{font-size:32px;line-height:1.2;font-weight:800;text-align:center;margin:0 0 20px}
+.ppn-aidem__lead{font-size:16px;line-height:1.5;margin:0 0 20px}
+.ppn-aidem__card{background:var(--w);border:1px solid #F0F0F3;border-radius:16px;padding:36px 24px;box-shadow:0 4px 24px rgba(27,25,64,.05)}
+.ppn-aidem__q{font-size:21px;line-height:1.3;font-weight:800;text-align:center;margin:0 0 6px}
+.ppn-aidem__hint{font-size:14px;line-height:1.45;color:var(--g);text-align:center;margin:0 auto 22px;max-width:440px}
+.ppn-aidem__opts{display:grid;gap:14px;max-width:480px;margin:0 auto}
+.ppn-aidem__opts--2col{grid-template-columns:1fr 1fr;max-width:640px;gap:12px}
+.ppn-aidem__opts--2col ~ .ppn-aidem__foot{max-width:640px}
+.ppn-aidem__opts--2col .ppn-aidem__opt{padding:14px 16px;gap:14px}
+.ppn-aidem__opt{display:flex;align-items:center;gap:16px;width:100%;text-align:left;font:inherit;color:var(--d);background:var(--w);
+  border:2px solid var(--b);border-radius:12px;padding:18px 20px;cursor:pointer;transition:border-color .15s,background .15s}
+.ppn-aidem__opt:hover,.ppn-aidem__opt:focus-visible{border-color:var(--p500);outline:none}
+.ppn-aidem__opt[aria-pressed="true"]{border-color:var(--p500);background:var(--p50)}
+.ppn-aidem__ico{flex:0 0 44px;height:44px;border-radius:10px;background:var(--p100);color:var(--p500);display:grid;place-items:center;font-size:17px;font-weight:800}
+.ppn-aidem__opt[aria-pressed="true"] .ppn-aidem__ico{background:var(--p500);color:#fff}
+.ppn-aidem__opt-l{display:block;font-size:16px;font-weight:700;line-height:1.3}
+.ppn-aidem__opt-s{display:block;font-size:13px;color:var(--g);margin-top:2px}
+.ppn-aidem__foot{display:flex;justify-content:space-between;align-items:center;max-width:480px;margin:22px auto 0;gap:12px;min-height:24px}
+.ppn-aidem__back{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:14px;font-weight:700;color:var(--g);background:none;border:0;padding:4px 0;cursor:pointer}
+.ppn-aidem__back:hover{color:var(--p500)}
+.ppn-aidem__back svg{width:16px;height:16px}
+.ppn-aidem__step{font-size:13px;color:var(--g)}
+.ppn-aidem__cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-size:16px;font-weight:800;color:#fff;background:var(--p500);
+  border:0;border-radius:999px;padding:18px 40px;min-width:280px;text-decoration:none;cursor:pointer;box-shadow:0 8px 20px rgba(90,82,255,.28);transition:background .15s}
+.ppn-aidem__cta:hover{background:var(--p600)}
+.ppn-aidem__cta[disabled]{opacity:.35;cursor:not-allowed;box-shadow:none}
+.ppn-aidem__center{text-align:center;margin-top:24px}
+/* Résultat */
+.ppn-aidem__res-ico{width:64px;height:64px;border-radius:50%;background:var(--p100);color:var(--p500);display:grid;place-items:center;margin:0 auto 18px}
+.ppn-aidem__res-ico svg{width:30px;height:30px}
+.ppn-aidem__res-ico--none{color:var(--g)}
+.ppn-aidem__res-t{font-size:23px;font-weight:800;text-align:center;margin:0 0 10px}
+.ppn-aidem__res-p{font-size:15px;line-height:1.6;color:var(--g);text-align:center;max-width:440px;margin:0 auto}
+.ppn-aidem__list{list-style:none;padding:0;margin:26px auto 0;display:grid;gap:12px;max-width:560px}
+.ppn-aidem__aid{display:flex;gap:16px;border:2px solid var(--b);border-radius:12px;padding:18px 20px}
+.ppn-aidem__aid-body{flex:1;min-width:0}
+.ppn-aidem__aid-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 12px}
+.ppn-aidem__aid-name{font-size:16px;font-weight:800;margin:0}
+.ppn-aidem__aid-amt{font-size:15px;font-weight:800;color:var(--p500)}
+.ppn-aidem__tags{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 8px}
+.ppn-aidem__tag{font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;background:var(--p50);color:var(--p700)}
+.ppn-aidem__tag--org{background:var(--p50);color:var(--p700)}
+.ppn-aidem__aid-txt{font-size:14px;line-height:1.5;color:var(--p900);margin:0}
+.ppn-aidem__note{font-size:12px;line-height:1.5;color:var(--g);text-align:center;max-width:520px;margin:20px auto 0}
+@media (max-width:520px){
+  .ppn-aidem__opts--2col{grid-template-columns:1fr}
+  .ppn-aidem__title{font-size:25px}.ppn-aidem__card{padding:26px 16px}.ppn-aidem__q{font-size:19px}
+  .ppn-aidem__opt{padding:14px 16px}.ppn-aidem__cta{min-width:0;width:100%;padding:16px 24px}
+  .ppn-aidem__aid{flex-direction:column;gap:10px}}
+</style>
+</head>
+<body style="margin:0;padding:16px;background:#fff">
 
+<div class="ppn-aidem" id="ppn-aidem">
+  <h2 class="ppn-aidem__title">À quelles aides au déménagement avez-vous droit ?</h2>
+  <p class="ppn-aidem__lead">Découvrez en quelques questions les aides auxquelles vous pouvez prétendre pour financer votre déménagement.</p>
+  <div class="ppn-aidem__card" id="ppn-aidem-card" aria-live="polite"></div>
+</div>
+
+<script>
+(function(){
+  if (window.__ppnAidemInit) return; window.__ppnAidemInit = true;
+
+  /* Icônes Lucide (lucide.dev, licence ISC) */
+  var ICONS = {"hand-coins": "<path d=\"M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17\" /> <path d=\"m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9\" /> <path d=\"m2 16 6 6\" /> <circle cx=\"16\" cy=\"9\" r=\"2.9\" /> <circle cx=\"6\" cy=\"5\" r=\"3\" />", "briefcase": "<path d=\"M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16\" /> <rect width=\"20\" height=\"14\" x=\"2\" y=\"6\" rx=\"2\" />", "key-round": "<path d=\"M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z\" /> <circle cx=\"16.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\" />", "x": "<path d=\"M18 6 6 18\" /> <path d=\"m6 6 12 12\" />", "arrow-right": "<path d=\"M5 12h14\" /> <path d=\"m12 5 7 7-7 7\" />", "rotate-ccw": "<path d=\"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8\" /> <path d=\"M3 3v5h5\" />", "receipt": "<path d=\"M12 17V7\" /> <path d=\"M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8\" /> <path d=\"M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z\" />", "landmark": "<path d=\"M10 18v-7\" /> <path d=\"M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z\" /> <path d=\"M14 18v-7\" /> <path d=\"M18 18v-7\" /> <path d=\"M3 22h18\" /> <path d=\"M6 18v-7\" />", "circle-x": "<circle cx=\"12\" cy=\"12\" r=\"10\" /> <path d=\"m15 9-6 6\" /> <path d=\"m9 9 6 6\" />", "check": "<path d=\"M20 6 9 17l-5-5\" />", "book-open": "<path d=\"M12 5v16\" /> <path d=\"M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z\" />", "graduation-cap": "<path d=\"M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z\" /> <path d=\"M22 10v6\" /> <path d=\"M6 12.5V16a6 3 0 0 0 12 0v-3.5\" />", "circle-check": "<circle cx=\"12\" cy=\"12\" r=\"10\" /> <path d=\"m16 9-5.5 5.5L8 12\" />", "accessibility": "<circle cx=\"16\" cy=\"4\" r=\"1\" /> <path d=\"m18 19 1-7-6 1\" /> <path d=\"m5 8 3-3 5.5 3-2.36 3.5\" /> <path d=\"M4.24 14.5a5 5 0 0 0 6.88 6\" /> <path d=\"M13.76 17.5a5 5 0 0 0-6.88-6\" />", "users": "<path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\" /> <path d=\"M16 3.128a4 4 0 0 1 0 7.744\" /> <path d=\"M22 21v-2a4 4 0 0 0-3-3.87\" /> <circle cx=\"9\" cy=\"7\" r=\"4\" />", "circle-question-mark": "<circle cx=\"12\" cy=\"12\" r=\"10\" /> <path d=\"M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3\" /> <path d=\"M12 17h.01\" />", "arrow-left": "<path d=\"m12 19-7-7 7-7\" /> <path d=\"M19 12H5\" />", "wallet": "<path d=\"M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1\" /> <path d=\"M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4\" />", "user": "<path d=\"M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2\" /> <circle cx=\"12\" cy=\"7\" r=\"4\" />", "circle-dashed": "<path d=\"M10.1 2.182a10 10 0 0 1 3.8 0\" /> <path d=\"M13.9 21.818a10 10 0 0 1-3.8 0\" /> <path d=\"M17.609 3.721a10 10 0 0 1 2.69 2.7\" /> <path d=\"M2.182 13.9a10 10 0 0 1 0-3.8\" /> <path d=\"M20.279 17.609a10 10 0 0 1-2.7 2.69\" /> <path d=\"M21.818 10.1a10 10 0 0 1 0 3.8\" /> <path d=\"M3.721 6.391a10 10 0 0 1 2.7-2.69\" /> <path d=\"M6.391 20.279a10 10 0 0 1-2.69-2.7\" />", "armchair": "<path d=\"M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3\" /> <path d=\"M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z\" /> <path d=\"M5 18v2\" /> <path d=\"M19 18v2\" />", "house": "<path d=\"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8\" /> <path d=\"M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\" />", "wrench": "<path d=\"M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z\" />"};
+  function ico(n){ return '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+ICONS[n]+'</svg>'; }
+
+  /* CTA de fin : à adapter */
+  var CTA = { label:'Organisez votre déménagement avec papernest', url:'https://www.papernest.com/demenagement/' };
+
+  /* ---------- Questions ---------- */
+  var YES_NO = [['oui','check','Oui'],['non','x','Non']];
+  var STEPS = [
+    { id:'cat', cols:2, q:'Quelle est votre situation ?',
+      opts:[
+        ['etudes','graduation-cap','Étudiant','lycéen, étudiant ou alternant'],
+        ['travail','briefcase','Salarié ou retraité','secteur privé ou public'],
+        ['handicap','accessibility','En situation de handicap'],
+        ['autre','circle-dashed','Autre situation']
+      ]},
+    { id:'sEtudes', q:'Vous êtes…',
+      when:function(s){ return s.cat==='etudes'; },
+      opts:[
+        ['lyceen','graduation-cap','Lycéen','futur étudiant'],
+        ['etudiant','book-open','Étudiant','licence, master…'],
+        ['alternant','wrench','Alternant','apprentissage ou contrat pro']
+      ]},
+    { id:'sTravail', q:'Vous êtes…',
+      when:function(s){ return s.cat==='travail'; },
+      opts:[
+        ['salarie','briefcase','Salarié','du secteur privé'],
+        ['fonctionnaire','landmark','Agent public','de l’État'],
+        ['retraite','armchair','Retraité']
+      ]},
+    { id:'boursier', q:'Êtes-vous boursier sur critères sociaux ?', hint:'Bourse de lycée, bourse du CROUS ou allocation annuelle spécifique.',
+      when:function(s){ return has(s,'lyceen')||has(s,'etudiant'); }, opts:YES_NO },
+    { id:'parcoursup', q:'Avez-vous accepté une formation hors de votre académie ?',
+      hint:'Réponse « Oui » ou « Oui-si » définitive sur Parcoursup.',
+      when:function(s){ return has(s,'lyceen') && s.boursier==='oui'; }, opts:YES_NO },
+    { id:'master', q:'Entrez-vous en Master 1 dans une autre région académique ?',
+      hint:'Licence (hors licence pro) obtenue l’an dernier et première inscription en M1.',
+      when:function(s){ return has(s,'etudiant') && s.boursier==='oui'; }, opts:YES_NO },
+    { id:'age', q:'Avez-vous moins de 30 ans ?',
+      when:function(s){ return has(s,'alternant'); }, opts:YES_NO },
+    { id:'enfants', q:'Combien d’enfants avez-vous à charge ?', hint:'Nés ou à naître.',
+      opts:[['0','user','Aucun enfant'],['2','users','1 ou 2 enfants'],['3','#3','3 enfants'],['4','#4','4 enfants'],['5','#5+','5 enfants ou plus']] },
+    { id:'periode', q:'Votre déménagement a-t-il lieu dans cette période ?',
+      hint:'Du 1er jour du mois suivant le 3e mois de grossesse jusqu’à la veille des 2 ans du plus jeune enfant.',
+      when:function(s){ return +s.enfants>=3; }, opts:YES_NO },
+    { id:'apl', q:'Aurez-vous droit à l’APL ou à l’ALF dans votre nouveau logement ?',
+      when:function(s){ return +s.enfants>=3 && s.periode==='oui'; },
+      opts:[['oui','check','Oui'],['nsp','circle-question-mark','Je ne sais pas','faites une simulation sur caf.fr'],['non','x','Non']] },
+    { id:'revenus', q:'Avez-vous du mal à financer votre installation ?',
+      hint:'Dépôt de garantie, premier loyer, frais d’agence, déménagement…',
+      opts:[['oui','receipt','Oui','mes ressources sont faibles'],['non','wallet','Non']] }
+  ];
+
+  /* ---------- Aides (liens : sites des organismes qui versent chaque aide) ---------- */
+  function cafPlafond(n){ n=+n; return n<3?0:1147.58+(n-3)*95.63; }
+
+  var AIDES = [
+    { icon:'house', name:'Prime de déménagement', org:'CAF ou MSA',
+      amount:function(s){ return cafPlafond(s.enfants); },
+      label:function(s){ return 'jusqu’à '+eur(cafPlafond(s.enfants))+(s.enfants==='5'?' (+95,63 €/enfant en plus)':''); },
+      test:function(s){ return +s.enfants>=3 && s.periode==='oui' && s.apl!=='non'; },
+      check:function(s){ return s.apl==='nsp'; },
+      txt:'Remboursement de vos frais de déménagement si vous avez au moins 3 enfants. Demande dans les 6 mois.' },
+    { icon:'graduation-cap', name:'Aide à la mobilité Parcoursup', org:'CROUS',
+      amount:function(){ return 500; }, label:function(){ return '500 €'; },
+      test:function(s){ return has(s,'lyceen') && s.boursier==='oui' && s.parcoursup==='oui'; },
+      txt:'Pour les lycéens boursiers qui partent étudier hors de leur académie. Demande à partir du 15 juillet.' },
+    { icon:'book-open', name:'Aide à la mobilité Master', org:'CROUS',
+      amount:function(){ return 1000; }, label:function(){ return '1 000 €'; },
+      test:function(s){ return has(s,'etudiant') && s.boursier==='oui' && s.master==='oui'; },
+      txt:'Pour les boursiers qui entrent en Master 1 dans une autre région académique.' },
+    { icon:'key-round', name:'Aide Mobili-Jeune®', org:'Action Logement',
+      amount:function(){ return 0; }, label:function(){ return 'Aide au loyer mensuelle'; },
+      test:function(s){ return has(s,'alternant') && s.age==='oui'; },
+      check:function(){ return true; },
+      txt:'Une partie de votre loyer prise en charge pendant votre alternance.' },
+    { icon:'hand-coins', name:'Fonds de solidarité pour le logement (FSL)', org:'Département',
+      amount:function(){ return 0; }, label:function(){ return 'Montant variable'; },
+      test:function(s){ return s.revenus==='oui'; },
+      check:function(){ return true; },
+      txt:'Aide du département pour le dépôt de garantie, le premier loyer ou le déménagement, sous conditions de ressources.' },
+    { icon:'briefcase', name:'Aide de l’employeur', org:'Entreprise',
+      amount:function(){ return 0; }, label:function(){ return 'Selon convention'; },
+      test:function(s){ return has(s,'salarie')||has(s,'alternant'); },
+      check:function(){ return true; },
+      txt:'Votre convention collective peut prévoir une prise en charge des frais ou un jour de congé.' },
+    { icon:'landmark', name:'Aide à l’installation des personnels de l’État (AIP)', org:'Fonction publique',
+      amount:function(){ return 1500; }, label:function(){ return '700 à 1 500 €'; },
+      test:function(s){ return has(s,'fonctionnaire'); },
+      check:function(){ return true; },
+      txt:'Pour les agents de l’État affectés pour la première fois, sous conditions de revenus.' },
+    { icon:'accessibility', name:'Prestation de compensation du handicap (PCH)', org:'MDPH',
+      amount:function(){ return 3000; }, label:function(){ return 'jusqu’à 3 000 € sur 10 ans'; },
+      test:function(s){ return has(s,'handicap'); },
+      check:function(){ return true; },
+      txt:'Pour déménager vers un logement accessible lorsque le vôtre est inadapté.' },
+    { icon:'armchair', name:'Aide des caisses de retraite', org:'Caisse de retraite',
+      amount:function(){ return 0; }, label:function(){ return 'Montant variable'; },
+      test:function(s){ return has(s,'retraite'); },
+      check:function(){ return true; },
+      txt:'Votre caisse de retraite peut participer à vos frais de déménagement.' }
+  ];
+
+  /* ---------- État & rendu ---------- */
+  var state = { statut:[] }, idx = 0, $card = document.getElementById('ppn-aidem-card');
+  function has(s,v){ return s.cat===v || (s.cat==='etudes' && s.sEtudes===v) || (s.cat==='travail' && s.sTravail===v); }
+  function eur(n){ var p=(Math.round(n*100)/100).toFixed(n%1?2:0).split('.'); return p[0].replace(/\B(?=(\d{3})+(?!\d))/g,'\u00a0')+(p[1]?','+p[1]:'')+'\u00a0€'; }
+  function active(){ return STEPS.filter(function(st){ return !st.when || st.when(state); }); }
+  function answered(st){ var v=state[st.id]; return (st.multi||st.arr) ? !!(v && v.length) : !!v; }
+  function tile(i){ return '<span class="ppn-aidem__ico" aria-hidden="true">'+(i.charAt(0)==='#'?i.slice(1):ico(i))+'</span>'; }
+
+  function render(){
+    var steps = active(); if (idx>steps.length-1) return results();
+    var st = steps[idx], html = '<h3 class="ppn-aidem__q">'+st.q+'</h3>'+(st.hint?'<p class="ppn-aidem__hint">'+st.hint+'</p>':'<div style="height:16px"></div>')+'<div class="ppn-aidem__opts'+(st.cols?' ppn-aidem__opts--2col':'')+'" role="group">';
+    st.opts.forEach(function(o){
+      var on = st.multi ? state[st.id].indexOf(o[0])>-1 : st.arr ? state[st.id][0]===o[0] : state[st.id]===o[0];
+      html += '<button type="button" class="ppn-aidem__opt" data-v="'+o[0]+'" aria-pressed="'+on+'">'+tile(o[1])+
+        '<span><span class="ppn-aidem__opt-l">'+o[2]+'</span>'+(o[3]?'<span class="ppn-aidem__opt-s">'+o[3]+'</span>':'')+'</span></button>';
+    });
+    html += '</div>';
+    if (st.multi) html += '<div class="ppn-aidem__center"><button type="button" class="ppn-aidem__cta" data-a="next"'+(answered(st)?'':' disabled')+'>Continuer</button></div>';
+    html += '<div class="ppn-aidem__foot">'+(idx>0?'<button type="button" class="ppn-aidem__back" data-a="back">'+ico('arrow-left')+'Retour</button>':'<span></span>')+
+      '<span class="ppn-aidem__step">Question '+(idx+1)+' / '+steps.length+'</span></div>';
+    $card.innerHTML = html;
+    bind(st); resize();
+  }
+
+  function bind(st){
+    Array.prototype.forEach.call($card.querySelectorAll('.ppn-aidem__opt'), function(b){
+      b.addEventListener('click', function(){
+        var v = b.getAttribute('data-v');
+        if (st.multi){
+          var a = state[st.id], i = a.indexOf(v);
+          if (i>-1) a.splice(i,1);
+          else if (v==='autre') a.length = 0, a.push(v);
+          else { var j=a.indexOf('autre'); if(j>-1) a.splice(j,1); a.push(v); }
+          render();
+        } else { state[st.id] = st.arr ? [v] : v; render(); setTimeout(function(){ idx++; render(); },220); }
+      });
+    });
+    var n = $card.querySelector('[data-a="next"]'), p = $card.querySelector('[data-a="back"]');
+    if (n) n.addEventListener('click', function(){ if (answered(st)){ idx++; render(); } });
+    if (p) p.addEventListener('click', function(){ idx = Math.max(0, Math.min(idx, active().length) - 1); render(); });
+  }
+
+  function results(){
+    var res = AIDES.filter(function(a){ return a.test(state); });
+    var total = res.reduce(function(t,a){ return t+a.amount(state); },0);
+    var html = '<div class="ppn-aidem__res-ico'+(res.length?'':' ppn-aidem__res-ico--none')+'">'+ico(res.length?'circle-check':'circle-x')+'</div>';
+    if (res.length){
+      html += '<h3 class="ppn-aidem__res-t">'+res.length+' aide'+(res.length>1?'s correspondent':' correspond')+' à votre profil</h3>'+
+        (total?'<p class="ppn-aidem__res-p">'+'Jusqu’à <strong>'+eur(total)+'</strong> d’aides directes estimées.</p>':'')+'<ul class="ppn-aidem__list">';
+      res.forEach(function(a){
+        html += '<li class="ppn-aidem__aid">'+tile(a.icon)+'<div class="ppn-aidem__aid-body"><div class="ppn-aidem__aid-top"><h4 class="ppn-aidem__aid-name">'+a.name+'</h4><span class="ppn-aidem__aid-amt">'+a.label(state)+'</span></div>'+
+          '<div class="ppn-aidem__tags"><span class="ppn-aidem__tag ppn-aidem__tag--org">'+a.org+'</span></div>'+
+          '<p class="ppn-aidem__aid-txt">'+a.txt+'</p></div></li>';
+      });
+      html += '</ul>';
+    } else {
+      html += '<h3 class="ppn-aidem__res-t">Aucune aide nationale identifiée</h3>'+
+        '<p class="ppn-aidem__res-p">Votre profil ne correspond pas aux aides nationales. Renseignez-vous auprès de votre employeur et du CCAS de votre commune.</p>';
+    }
+    html += '<div class="ppn-aidem__center"><a class="ppn-aidem__cta" href="'+CTA.url+'" target="_blank" rel="noopener">'+CTA.label+'</a></div>'+
+      '<div class="ppn-aidem__center" style="margin-top:14px"><button type="button" class="ppn-aidem__back" data-a="restart">'+ico('rotate-ccw')+'Refaire le test</button></div>'+
+      '<p class="ppn-aidem__note">Simulation indicative : l’attribution finale dépend de chaque organisme.</p>';
+    $card.innerHTML = html;
+    $card.querySelector('[data-a="restart"]').addEventListener('click', function(){ state={statut:[]}; idx=0; render(); });
+    resize();
+  }
+
+  /* ---------- iframe : hauteur via postMessage ---------- */
+  var ALLOWED = ['https://www.papernest.com','https://www.fournisseur-energie.com'];
+  function resize(){
+    if (window.parent===window) return;
+    var h = document.documentElement.scrollHeight;
+    ALLOWED.forEach(function(o){ try{ window.parent.postMessage({type:'ppn-aidem-height',height:h}, o); }catch(e){} });
+  }
+  window.addEventListener('resize', resize);
+
+  render();
+})();
+</script>
+</body>
+</html>
